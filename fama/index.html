@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Portal 💗</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ff6fb5);
+    overflow: hidden;
+}
+
+/* Portal Screen */
+#portal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle, #ffb6d9, #ff69b4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+#portal h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #ff4da6;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffe6f2;
+}
+
+/* Main Content */
+#main {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    color: white;
+}
+
+h2 {
+    font-size: 3em;
+    text-shadow: 2px 2px #ff4da6;
+}
+
+.message {
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1.2em;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Moving Cat */
+#cat {
+    position: fixed;
+    bottom: 10px;
+    font-size: 40px;
+    animation: moveCat 12s linear infinite;
+}
+
+@keyframes moveCat {
+    0% { left: -10%; }
+    100% { left: 110%; }
+}
+
+/* Reveal Button */
+.revealBtn {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="portal">
+    <h1>Happy Sweet 16💗</h1>
+    <p>Only Fama may enter...</p>
+    <input type="password" id="password" placeholder="hint: (your name)">
+    <button onclick="checkPassword()">Unlock ✨</button>
+    <p id="error"></p>
+</div>
+
+<div id="main">
+    <h2>Happy Birthday, Fama! 💗</h2>
+
+    <div class="message">
+        You once called me a Computer Science nerd...  
+        So I coded you a mini birthday website :)
+    </div>
+
+    <button class="revealBtn" onclick="revealMessage()">Open Your Secret 📸</button>
+
+    <div id="secret" class="hidden message">
+        Fama, you mean the world to me. I hope  you get everthing you want in life and more.
+         May Allah bless you in every possible way. 
+        I couldnt have asked for a better friend than you. Thank you for always being there for me 
+        Lob you sooo much 💗
+        Stay Fama.
+        
+        — From your favorite add math nerd.
+    </div>
+</div>
+
+<div id="cat">🎂</div>
+
+<script>
+function checkPassword() {
+    const pass = document.getElementById("password").value;
+    if(pass.toLowerCase() === "fama") {
+        document.getElementById("portal").style.display = "none";
+        document.getElementById("main").style.display = "block";
+        createHearts();
+    } else {
+        document.getElementById("error").innerText = "Wrong portal key 💔";
+    }
+}
+
+function revealMessage() {
+    document.getElementById("secret").classList.remove("hidden");
+}
+
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }, 400);
+}
+</script>
+
+</body>
+</html>
